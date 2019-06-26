@@ -5,7 +5,7 @@ A Puzzle & Dragon auto solver, hardware.
 
 3-axis moving table is modified from Prusa i3 3D printer. 
 
-Software is built on Universal Windows Platform (UWP) framework.
+Software uses Universal Windows Platform (UWP) framework.
 
 Based on [tnkt37](https://github.com/tnkt37)'s project [PuzzDraSolver](https://github.com/tnkt37/PuzzDraSolver) (Big Thanks!)
 
