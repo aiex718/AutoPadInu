@@ -16,8 +16,8 @@ Based on [tnkt37](https://github.com/tnkt37)'s project [PuzzDraSolver](https://g
 * iPhone6s
 
 # Requirement
-Visual Studio 2017
-Win10 or Win10 Iot Core
+* Visual Studio 2017
+* Win10 or Win10 Iot Core
 
 # References
 * [PuzzDraSolver](https://github.com/tnkt37/PuzzDraSolver)
