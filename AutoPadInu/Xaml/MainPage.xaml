@@ -1,0 +1,174 @@
+<!--
+//*********************************************************
+//
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+//
+//*********************************************************
+-->
+<Page
+    x:Class="AutoPadInu_UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" >
+
+    <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="12,20,12,12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <StackPanel>
+            <Grid BorderThickness ="1" BorderBrush ="LightGray">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="65" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" BorderThickness ="1" BorderBrush ="LightGray">
+                    <TextBlock Text="Start Point" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                        <TextBlock Text="X=" VerticalAlignment="Center"/>
+                        <TextBox Margin="3,3,3,3" Name="StartPointX" Width="70" HorizontalAlignment="Left" TextChanged="Point_TextChanged"/>
+                        <TextBlock Text="Y=" VerticalAlignment="Center"/>
+                        <TextBox Margin="3,3,3,3" Name="StartPointY" Width="70" HorizontalAlignment="Left" TextChanged="Point_TextChanged"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" BorderThickness ="1" BorderBrush ="LightGray">
+                    <TextBlock Text="End Point" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                        <TextBlock Text="X=" VerticalAlignment="Center"/>
+                        <TextBox Margin="3,3,3,3" Name="EndPointX" Width="70" HorizontalAlignment="Left" TextChanged="Point_TextChanged"/>
+                        <TextBlock Text="Y=" VerticalAlignment="Center"/>
+                        <TextBox Margin="3,3,3,3" Name="EndPointY" Width="70" HorizontalAlignment="Left" TextChanged="Point_TextChanged"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="2" BorderThickness ="1" BorderBrush ="LightGray" Orientation="Vertical">
+                    <TextBlock Text="Speed" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+                    <TextBox Name="SpeedTextBox" Width="70" Margin="3,3,3,3" HorizontalAlignment="Center" TextChanged="Speed_TextChanged"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" BorderThickness ="1" BorderBrush ="LightGray" Orientation="Vertical">
+                    <TextBlock Text="Score Set" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+                    <TextBox Name="TargetScoreTextbox" Width="70" Margin="3,3,3,3" HorizontalAlignment="Center" TextChanged="ScoreSet_TextChanged"/>
+                </StackPanel>
+                <Grid Grid.Column="4" BorderThickness ="1" BorderBrush ="LightGray">
+                    <StackPanel  HorizontalAlignment="Left" >
+                        <CheckBox Name="AutoModeCheckButton" Content="Auto Mode" Margin="3,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="AutoModeCheckButton_CheckChanged" Unchecked="AutoModeCheckButton_CheckChanged" />
+                        <CheckBox Name="FastModeCheckButton" Content="Fast Mode" Margin="3,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="FastModeCheckButton_CheckChanged" Unchecked="FastModeCheckButton_CheckChanged" />
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="5" BorderThickness ="1" BorderBrush ="LightGray">
+                    <TextBlock x:Name="FPSMonitor" Margin="3,3,0,0"><Run Text="FPS:"/><Run Text="0"/></TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                        <!--<Button Content="LoadImg" HorizontalAlignment="Left" Margin="3,0,0,3" VerticalAlignment="Bottom" Click="LoadImg_Click"/>-->
+                        <Button Content="Capture"  HorizontalAlignment="Left" Margin="3,0,0,3" VerticalAlignment="Bottom" Click="Capture_Click" />
+                        <StackPanel HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="5,0,0,0">
+                            <TextBlock Name="LightThresTextbox" Text="Thres:0.00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3,3,0,0"/>
+                            <TextBlock Name="LightValueTextbox" Text="Value:0.00" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3,3,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+
+                </Grid>
+                <Grid Grid.Column="6" BorderThickness ="1" BorderBrush ="LightGray">
+                    <TextBlock Text="SerialPort" Margin="3,3,0,0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                        <Button Content="Connect" Margin="3,0,0,3" HorizontalAlignment="Left"   VerticalAlignment="Bottom" Click="SerialConnect_Click"  />
+                        <ComboBox Name ="SerialportCombobox" Margin="3,0,0,3" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+
+            <Grid HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                    </Style>
+                </Grid.Resources>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Source"/>
+                    <Image Name="PreviewImage" Width="240" Height="320" Stretch="Uniform" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <StackPanel>
+                        <TextBlock Text="Clipped"/>
+                        <Image Name="ClippedImage" Width="240" Height="200" />
+                    </StackPanel>
+                    <StackPanel>
+                        <Grid >
+                            <TextBlock Text="ColorFilter" />
+                            <ComboBox Name ="FilterCombobox" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="22" Width="80" FontSize="8" SelectionChanged="FilterCombobox_SelectionChanged"/>
+                        </Grid>
+                        <Image Name="ColotFilterImage" Width="240" Height="200" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <StackPanel>
+                        <Grid >
+                            <TextBlock Text="Analyzed" />
+                            <Button Name ="ParseRoute"  Height="22" Width="60" FontSize="8" Content="Parse" Click="ParseRoute_Click" />
+                            <Button Name ="ClearAnalyzedPanel" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="22" Width="60" FontSize="8" Content="Reset" Click="Reset_Click"  />
+                        </Grid>
+                        <TextBox Name="AnalyzedTextBlock" Width="240" Height="200" Text="Hello" BorderThickness="0" AcceptsReturn="True" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="22"  />
+                    </StackPanel>
+                    <StackPanel>
+                        <Grid >
+                            <TextBlock Text="Message" FontFamily="Segoe UI" />
+                            <Button Name ="ClearMessageButton" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="22" Width="60" FontSize="8" Content="Clear"  Click="ClearMessageButton_Click" FontFamily="Segoe UI" />
+                        </Grid>
+                        <ScrollViewer Name="MessageTextboxScroll"  VerticalScrollBarVisibility="Auto" Height="200">
+                            <TextBox Name="MessageTextBlock" Margin="10,0,10,0" Height="Auto" Text="Hello" BorderThickness="0" AcceptsReturn="True" FontSize="16"  />
+                        </ScrollViewer>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="3">
+                    <StackPanel>
+                        <Grid >
+                            <TextBlock Text="Route" />
+                            <Button Name ="Send" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="22" Width="60" FontSize="8" Content="Send" Click="SendRoute_Click"  />
+                        </Grid>
+                        <TextBox Name="RouteTextBox" TextWrapping="Wrap" Margin="10,0,10,0" Height="200" Text="Hello" BorderThickness="0" AcceptsReturn="True" FontSize="18" ScrollViewer.HorizontalScrollBarVisibility="Disabled"   />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Result" />
+                        <TextBox Name="ResultPanelTextBlock" Width="240" Height="200" Text="Hello" BorderThickness="0" AcceptsReturn="True" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="22"  />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
