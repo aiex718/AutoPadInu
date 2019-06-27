@@ -1,7 +1,7 @@
-[![Demo Video](https://raw.githubusercontent.com/aiex718/AutoPadInu_UWP/master/Pic/AutoPadInu_UWP.jpg)](https://www.youtube.com/watch?v=ytpIgHZycZY)
+[![Video](https://raw.githubusercontent.com/aiex718/AutoPadInu_UWP/master/Pic/AutoPadInu_UWP.jpg)](https://www.youtube.com/watch?v=ytpIgHZycZY)
 
-# AutoPadInu_UWP
-A Puzzle & Dragon auto solver, hardware.
+# AutoPadInu
+A Puzzle & Dragons auto solving machine.
 
 3-axis moving table is modified from Prusa i3 3D printer. 
 
@@ -9,11 +9,11 @@ Software uses Universal Windows Platform (UWP) framework.
 
 Based on [tnkt37](https://github.com/tnkt37)'s project [PuzzDraSolver](https://github.com/tnkt37/PuzzDraSolver) (Big Thanks!)
 
-# Hardware Parts List
+# Hardware List
 * Prusa i3
 * USB Webcam
 * Stylus
-* iPhone6s
+* iPhone 6s
 
 # Requirement
 * Visual Studio 2017
