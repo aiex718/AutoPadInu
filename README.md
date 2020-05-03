@@ -1,4 +1,4 @@
-[![Video](https://raw.githubusercontent.com/aiex718/AutoPadInu_UWP/master/Pic/AutoPadInu_UWP.jpg)](https://www.youtube.com/watch?v=ytpIgHZycZY)
+[![Video](https://raw.githubusercontent.com/aiex718/AutoPadInu/master/Pic/AutoPadInu_UWP.jpg)](https://www.youtube.com/watch?v=ytpIgHZycZY)
 
 # AutoPadInu
 A Puzzle & Dragons auto solving machine.
